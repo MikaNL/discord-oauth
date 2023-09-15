@@ -4,7 +4,7 @@
     $discord = new Discord($client_id, $client_secret, $redirect_uri, $scope);
 
     session_start();
-    if (!empty($_GET['code'] && empty($_SESSION['user']))) {
+    if ((isset($_GET['code']) && !empty($_GET['code']) && empty($_SESSION['user']))) {
         $token = $discord->getAccessToken($_GET['code']);
         $user = $discord->getUser($token['access_token']);
         $_SESSION['user'] = $user;
